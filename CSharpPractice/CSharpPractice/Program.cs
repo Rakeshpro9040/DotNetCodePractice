@@ -3,7 +3,7 @@
 namespace CSharpPractice
 {
     /// <summary>
-    /// This is the main class for this entire Solution
+    /// This is the main class for this Project
     /// </summary>
     class Program
     {

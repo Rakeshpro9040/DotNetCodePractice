@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CSharpPractice
 {
-    class EarltBindingUsingReflection
+    class EarlyBindingUsingReflection
     {
-        public static void EarltBindingUsingReflectionMain()
+        public static void EarlyBindingUsingReflectionMain()
         {
             Customer C1 = new Customer();
             string fullName = C1.GetFullName("Rakesh", "Panigrahi");

@@ -35,27 +35,19 @@ namespace EmployeeManagement
         {
             if (env.IsDevelopment())
             {
-                DeveloperExceptionPageOptions developerExceptionPageOptions = 
-                    new DeveloperExceptionPageOptions
-                {
-                    SourceCodeLineCount = 1
-                };
-                app.UseDeveloperExceptionPage(developerExceptionPageOptions);
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseFileServer();
+            app.UseStaticFiles();
 
             app.Run(async (context) =>
             {
-                throw new Exception("Some error processing the request");
-                await context.Response.WriteAsync("Hello World!");
+                await context.Response.WriteAsync("Hosting Environment: " + env.EnvironmentName);
             });
-
         }
     }
 }
 
 //Testing
 /*
-In browser open this link: http://localhost:24843/abc.html
 */

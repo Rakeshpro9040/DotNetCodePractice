@@ -53,6 +53,4 @@ namespace EmployeeManagement
 
 //Testing
 /*
- * http://localhost:24843/ --> Hello from MVC
- * http://localhost:24843/about/index --> Hello from Configure()
 */

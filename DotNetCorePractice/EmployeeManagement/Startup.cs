@@ -55,4 +55,5 @@ namespace EmployeeManagement
 
 //Testing
 /*
+ * http://localhost:24843/home/details --> returns JSON
 */

@@ -25,12 +25,9 @@ namespace EmployeeManagement.Controllers
         {
             Employee model = _employeeRepository.GetEmployee(1);
 
-            // To store the page title and empoyee model object in the 
-            // ViewBag we are using dynamic properties PageTitle and Employee
             ViewBag.PageTitle = "Employee Details";
-            ViewBag.Employee = model;
 
-            return View();
+            return View(model);
         }
     }
 }

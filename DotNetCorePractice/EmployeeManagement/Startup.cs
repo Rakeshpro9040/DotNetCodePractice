@@ -55,5 +55,5 @@ namespace EmployeeManagement
 
 //Testing
 /*
- * http://localhost:24843/home/details --> returns ViewResult
+ * http://localhost:24843/home/details --> returns Details.cshtml from Views/Home folder
 */

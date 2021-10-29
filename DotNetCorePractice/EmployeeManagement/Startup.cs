@@ -56,4 +56,5 @@ namespace EmployeeManagement
 //Testing
 /*
  * http://localhost:24843/home/details --> returns Employee Details
+ * http://localhost:24843/home/index --> returns Employee List
 */

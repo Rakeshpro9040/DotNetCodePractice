@@ -55,6 +55,6 @@ namespace EmployeeManagement
 
 //Testing
 /*
- * http://localhost:24843/home/details --> returns Employee Details
- * http://localhost:24843/home/index --> returns Employee List
+ * http://localhost:24843/home/details --> returns Script tag
+ * http://localhost:24843/ --> does not return Script tag
 */

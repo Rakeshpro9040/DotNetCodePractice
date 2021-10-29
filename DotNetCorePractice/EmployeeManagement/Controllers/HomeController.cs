@@ -26,13 +26,13 @@ namespace EmployeeManagement.Controllers
         }
 
 
-        public ViewResult Details()
+        public ViewResult Details(int id)
         {
 
             // Instantiate HomeDetailsViewModel and store Employee details and PageTitle
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Employee = _employeeRepository.GetEmployee(1),
+                Employee = _employeeRepository.GetEmployee(id),
                 PageTitle = "Employee Details"
             };
 

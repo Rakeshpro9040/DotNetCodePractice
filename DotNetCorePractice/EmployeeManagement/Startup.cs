@@ -43,7 +43,18 @@ namespace EmployeeManagement
 
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
+
+            // Here id is made optional with ?
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id}");
+            });
 
             app.Run(async (context) =>
             {
@@ -55,6 +66,7 @@ namespace EmployeeManagement
 
 //Testing
 /*
- * http://localhost:24843/home/details --> returns Script tag
- * http://localhost:24843/ --> does not return Script tag
+ * http://localhost:24843/home/details --> 
+ * http://localhost:24843/ --> 
+ * http://localhost:24843/home/details/1 --> Returns Employee-1 detail
 */

@@ -53,7 +53,7 @@ namespace EmployeeManagement
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id}");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
 
             app.Run(async (context) =>
@@ -69,4 +69,5 @@ namespace EmployeeManagement
  * http://localhost:24843/home/details --> 
  * http://localhost:24843/ --> 
  * http://localhost:24843/home/details/1 --> Returns Employee-1 detail
+ * http://localhost:24843/Departments/List --> Returns List() of DepartmentsController
 */

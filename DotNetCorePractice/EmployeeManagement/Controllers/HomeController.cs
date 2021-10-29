@@ -17,6 +17,9 @@ namespace EmployeeManagement.Controllers
             _employeeRepository = employeeRepository;
         }
 
+        [Route("")]
+        [Route("Home")]
+        [Route("Home/Index")]
         public ViewResult Index()
         {
             // retrieve all the employees
@@ -26,6 +29,7 @@ namespace EmployeeManagement.Controllers
         }
 
 
+        [Route("Home/Details/{id}")]
         public ViewResult Details(int id)
         {
 

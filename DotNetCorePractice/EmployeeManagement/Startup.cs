@@ -22,6 +22,7 @@ namespace EmployeeManagement
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -33,7 +34,16 @@ namespace EmployeeManagement
             options => options.UseSqlServer(_configuration.GetConnectionString("EmployeeDBConnection")));
 
             services.AddMvc(options => options.EnableEndpointRouting = false).AddXmlSerializerFormatters();
-            services.AddTransient<IEmployeeRepository, MockEmployeeRepository>();
+
+            /*
+                We want the instance of the SQLEmployeeRepository class to be alive and
+                available through the entire scope of a given HTTP request.
+                When a new HTTP request arrives at our application we want another new instance of this class
+                to be created and we want that instance also to be alive and
+                available throughout the entire scope of that HTTP request,
+                that's the reason we're using add scoped method to register our service in addition to add scope.
+            */
+            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure

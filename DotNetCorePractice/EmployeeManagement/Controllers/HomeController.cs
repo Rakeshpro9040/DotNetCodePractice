@@ -1,7 +1,6 @@
 ﻿using EmployeeManagement.Models;
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -60,32 +59,19 @@ namespace EmployeeManagement.Controllers
 
                 // If the Photo property on the incoming model object is not null, then the user
                 // has selected an image to upload.
-                if (model.Photos != null && model.Photos.Count > 0)
+                if (model.Photo != null)
                 {
-                    foreach (IFormFile photo in model.Photos)
-                    {
-                        // The image must be uploaded to the images folder in wwwroot
-                        // To get the path of the wwwroot folder we are using the inject
-                        // HostingEnvironment service provided by ASP.NET Core
-                        string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
-                        // To make sure the file name is unique we are appending a new
-                        // GUID value and and an underscore to the file name
-                        uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                        // Use CopyTo() method provided by IFormFile interface to
-                        // copy the file to wwwroot/images folder
-                        // This line is not safe. If you try to delete an image after you add it 
-                        // then an exception will be thrown.
-                        // Also, another error displayed, if you try to display an image without clear your buffer for this stream.
-                        //photo.CopyTo(new FileStream(filePath, FileMode.Create));
-
-                        //Use this instead
-                        using (var stream = new FileStream(filePath, FileMode.Create))
-                        {
-                            photo.CopyTo(stream);
-                            stream.Flush();
-                        }
-                    }                    
+                    // The image must be uploaded to the images folder in wwwroot
+                    // To get the path of the wwwroot folder we are using the inject
+                    // HostingEnvironment service provided by ASP.NET Core
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    // To make sure the file name is unique we are appending a new
+                    // GUID value and and an underscore to the file name
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    // Use CopyTo() method provided by IFormFile interface to
+                    // copy the file to wwwroot/images folder
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
 
                 // Id Column is an IDENTITY DB Column (auto-generated one)

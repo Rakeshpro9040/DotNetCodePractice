@@ -1,0 +1,10 @@
+Page :           https://localhost:44351/Default
+Error Message :  Exception of type 'System.Web.HttpUnhandledException' was thrown.
+Inner Message :  System.InvalidOperationException: Operation is not valid due to the current state of the object.
+   at DummyWebform._Default.btnException_Click(Object sender, EventArgs e) in D:\C_Workspaces_Repositories\GitHub_Repositories\DotNetCodePractice\DotNetWebformsPractice\DummyWebform\Default.aspx.cs:line 19
+   at System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   at System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   at System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

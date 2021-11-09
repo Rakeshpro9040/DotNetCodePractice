@@ -32,6 +32,10 @@ namespace EmployeeManagement.Controllers
 
         public ViewResult Details(int? id)
         {
+            // To Simulate HTTP ERROR 500
+            // Change the environment to Production and Test it
+            //throw new Exception("Error in Details View");
+
             Employee employee = _employeeRepository.GetEmployee(id ?? 1);
 
             if (employee == null)

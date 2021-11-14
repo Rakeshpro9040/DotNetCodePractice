@@ -2,6 +2,7 @@
 using EmployeeManagement.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,13 +14,16 @@ namespace EmployeeManagement.Controllers
     public class HomeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(IEmployeeRepository employeeRepository, 
-            IHostingEnvironment hostingEnvironment)
+        public HomeController(IEmployeeRepository employeeRepository,
+            IWebHostEnvironment hostingEnvironment,
+            ILogger<HomeController> logger)
         {
             _employeeRepository = employeeRepository;
             this.hostingEnvironment = hostingEnvironment;
+            this.logger = logger;
         }
 
         public ViewResult Index()
@@ -32,12 +36,24 @@ namespace EmployeeManagement.Controllers
 
         public ViewResult Details(int? id)
         {
+            logger.LogInformation($"You are viewing Employee Id: {id}");
+
             // To Simulate HTTP ERROR 500
-            // Change the environment to Production and Test it
-            //throw new Exception("Error in Details View");
+            try
+            {
+                throw new Exception("From try catch blcok...");
+            }
+            catch (Exception ex)
+            {
+
+                logger.LogCritical(ex, "There was a bad excpetion at {Time}", DateTime.UtcNow);
+            }
+
+            throw new Exception("Error in Details View");
 
             Employee employee = _employeeRepository.GetEmployee(id ?? 1);
 
+            // Test thsi with http://localhost:5000/home/details/99
             if (employee == null)
             {
                 Response.StatusCode = 404;
@@ -49,7 +65,7 @@ namespace EmployeeManagement.Controllers
             {
                 Employee = employee,
                 PageTitle = "Employee Details"
-            };
+            };            
 
             // Pass the ViewModel object to the View() helper method
             return View(homeDetailsViewModel);
@@ -72,7 +88,8 @@ namespace EmployeeManagement.Controllers
                 Email = employee.Email,
                 Department = employee.Department,
                 ExistingPhotoPath = employee.PhotoPath
-            };
+            };            
+
             return View(employeeEditViewModel);
         }
 

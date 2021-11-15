@@ -457,3 +457,5 @@ $RECYCLE.BIN/
 ## Custom_Rakesh
 ##
 wwwroot/lib
+# exclude everything from below folders
+DemoLogs/*

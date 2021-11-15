@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NLog.Extensions.Logging;
 
 namespace EmployeeManagement
 {
@@ -30,13 +31,13 @@ namespace EmployeeManagement
                 // For Other logging technique like "Serilog"
                 // We have to just modify this part
                 // ILogger is for temporary logging
-                .ConfigureLogging((context, logging) =>
+                .ConfigureLogging((hostingContext, logging) =>
                 {
-                    // Clear all providers logs (ex: Microsoft)
-                    logging.ClearProviders();
-                    logging.AddConfiguration(context.Configuration.GetSection("Logging"));
-                    logging.AddDebug();
+                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
                     logging.AddConsole();
+                    logging.AddDebug();
+                    logging.AddEventSourceLogger();
+                    logging.AddNLog();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

@@ -36,20 +36,27 @@ namespace EmployeeManagement.Controllers
 
         public ViewResult Details(int? id)
         {
-            logger.LogInformation($"You are viewing Employee Id: {id}");
+            //logger.LogInformation($"You are viewing Employee Id: {id}");
 
-            // To Simulate HTTP ERROR 500
-            try
-            {
-                throw new Exception("From try catch blcok...");
-            }
-            catch (Exception ex)
-            {
+            //// To Simulate HTTP ERROR 500
+            //try
+            //{
+            //    throw new Exception("From try catch blcok...");
+            //}
+            //catch (Exception ex)
+            //{
 
-                logger.LogCritical(ex, "There was a bad excpetion at {Time}", DateTime.UtcNow);
-            }
+            //    logger.LogCritical(ex, "There was a bad excpetion at {Time}", DateTime.UtcNow);
+            //}
 
-            throw new Exception("Error in Details View");
+            //throw new Exception("Error in Details View");
+
+            logger.LogTrace("Trace Log");
+            logger.LogDebug("Debug Log");
+            logger.LogInformation("Information Log");
+            logger.LogWarning("Warning Log");
+            logger.LogError("Error Log");
+            logger.LogCritical("Critical Log");
 
             Employee employee = _employeeRepository.GetEmployee(id ?? 1);
 

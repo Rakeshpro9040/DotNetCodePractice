@@ -51,12 +51,12 @@ namespace EmployeeManagement.Controllers
 
             //throw new Exception("Error in Details View");
 
-            logger.LogTrace("Trace Log");
-            logger.LogDebug("Debug Log");
-            logger.LogInformation("Information Log");
-            logger.LogWarning("Warning Log");
-            logger.LogError("Error Log");
-            logger.LogCritical("Critical Log");
+            //logger.LogTrace("Trace Log");
+            //logger.LogDebug("Debug Log");
+            //logger.LogInformation("Information Log");
+            //logger.LogWarning("Warning Log");
+            //logger.LogError("Error Log");
+            //logger.LogCritical("Critical Log");
 
             Employee employee = _employeeRepository.GetEmployee(id ?? 1);
 
